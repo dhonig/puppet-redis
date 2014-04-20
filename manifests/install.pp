@@ -23,6 +23,10 @@ class redis::install (
   # install necessary packages for build.
   case $::operatingsystem {
 
+        'Debian', 'Ubuntu': {
+            if ! defined(Package['build-essential'])      { package { 'build-essential':      ensure => present } }
+                }
+
     'Fedora', 'RedHat', 'CentOS', 'OEL', 'OracleLinux', 'Amazon': {
       package { 'make':
         ensure => installed,
